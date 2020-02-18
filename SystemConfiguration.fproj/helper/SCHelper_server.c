@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2005-2018 Apple Inc. All rights reserved.
+ * Copyright (c) 2005-2019 Apple Inc. All rights reserved.
  *
  * @APPLE_LICENSE_HEADER_START@
  *
@@ -38,7 +38,7 @@
 #include <Security/Security.h>
 #include <Security/SecTask.h>
 
-#define SC_LOG_HANDLE		__log_SCHelper()
+#define SC_LOG_HANDLE		__log_SCHelper
 #define SC_LOG_HANDLE_TYPE	static
 #include "SCPreferencesInternal.h"
 #include "SCHelper_client.h"
@@ -2096,6 +2096,8 @@ _helperinit(mach_port_t			server,
 	SCHelperSessionPrivateRef	sessionPrivate;
 	pthread_attr_t			tattr;
 	pthread_t			tid;
+
+	*newSession = MACH_PORT_NULL;
 
 	session = __SCHelperSessionFindWithPort(server);
 	if (session != NULL) {
